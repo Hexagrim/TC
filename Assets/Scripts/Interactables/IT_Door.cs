@@ -1,0 +1,47 @@
+using System.Collections;
+using UnityEngine;
+
+public class IT_Door : Interactable
+{
+    public Animator Anim;
+    Transform player;
+    bool canUse = true;
+    protected override void Start()
+    {
+        base.Start();
+        player = FindAnyObjectByType<PlayerMovement>().transform;
+    }
+    public override void Use()
+    {
+        base.Use();
+        if (!canUse) return;
+        if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Close"))
+        {
+            Vector3 direction = player.position - transform.position;
+            float dot = Vector3.Dot(transform.forward , direction);
+
+            if (dot > 0)
+            {
+                Anim.SetTrigger("openF");
+            }
+            else
+            {
+                Anim.SetTrigger("openB");
+            }
+
+        }
+
+        else
+        {
+            Anim.SetTrigger("close");
+        }
+        StartCoroutine(Cooldown());
+    }
+
+    IEnumerator Cooldown()
+    {
+        canUse = false;
+        yield return new WaitForSeconds(0.2f);
+        canUse = true;
+    }
+}

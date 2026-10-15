@@ -60,7 +60,12 @@ public class PickItem : MonoBehaviour
                 PickUp(lookItem);
             }
         }
-
+        
+        //use item
+        if (Input.GetKeyDown(KeyCode.Mouse0) && heldItem != null)
+        {
+            heldItem.Use();
+        }
     }
 
     void PickUp(Item i)

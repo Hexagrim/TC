@@ -3,7 +3,7 @@ using UnityEngine;
 public class I_Torch : Item
 {
     public GameObject LightSource;
-    protected override void Use()
+    public override void Use()
     {
         LightSource.SetActive(!LightSource.activeSelf);
     }
