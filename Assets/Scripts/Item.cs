@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
         
     }
 
-    protected virtual void Use()
+    public virtual void Use()
     {
 
     }
