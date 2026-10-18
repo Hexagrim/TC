@@ -51,7 +51,6 @@ public class Interact : MonoBehaviour
         //lookObject.StopUsing();
         //}
         //
-
     }
 
 }
