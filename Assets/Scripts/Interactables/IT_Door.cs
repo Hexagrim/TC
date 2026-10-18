@@ -5,16 +5,16 @@ public class IT_Door : Interactable
 {
     public Animator Anim;
     Transform player;
-    bool canUse = true;
+    bool canUseDoor = true;
     protected override void Start()
     {
         base.Start();
         player = FindAnyObjectByType<PlayerMovement>().transform;
     }
-    public override void Use()
+    public override void OnUse()
     {
-        base.Use();
-        if (!canUse) return;
+        base.OnUse();
+        if (!canUseDoor) return;
         if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Close"))
         {
             Vector3 direction = player.position - transform.position;
@@ -24,7 +24,7 @@ public class IT_Door : Interactable
             {
                 Anim.SetTrigger("openF");
             }
-            else
+            else  
             {
                 Anim.SetTrigger("openB");
             }
@@ -40,8 +40,8 @@ public class IT_Door : Interactable
 
     IEnumerator Cooldown()
     {
-        canUse = false;
+        canUseDoor = false;
         yield return new WaitForSeconds(0.2f);
-        canUse = true;
+        canUseDoor = true;
     }
 }
