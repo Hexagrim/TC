@@ -23,8 +23,8 @@ public class PickItem : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, range))
+        //the most beautiful calculation i have ever done that worked first try Camera.main.transform.position + Camera.main.transform.forward * 0.5f
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * 0.5f, Camera.main.transform.forward, out hit, range))
         {
             if (hit.collider.GetComponent<Item>())
             {
@@ -44,7 +44,8 @@ public class PickItem : MonoBehaviour
         //handle the crosshair change:
 
         lookingCrosshair.SetActive(lookItem != null);
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 10f, Color.red);
+        Debug.DrawRay(Camera.main.transform.position + Camera.main.transform.forward * 0.5f, Camera.main.transform.forward * range, (lookItem == null)? Color.red : Color.green);
+
 
         //picking it up
 
