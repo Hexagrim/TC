@@ -6,6 +6,7 @@ public class IT_Door : Interactable
     public Animator Anim;
     Transform player;
     bool canUseDoor = true;
+    public bool open;
     protected override void Start()
     {
         base.Start();
@@ -23,10 +24,12 @@ public class IT_Door : Interactable
             if (dot > 0)
             {
                 Anim.SetTrigger("openF");
+                open = true;
             }
             else  
             {
                 Anim.SetTrigger("openB");
+                open = true;
             }
 
         }
@@ -34,6 +37,7 @@ public class IT_Door : Interactable
         else
         {
             Anim.SetTrigger("close");
+            open = false;
         }
         StartCoroutine(Cooldown());
     }
@@ -43,5 +47,25 @@ public class IT_Door : Interactable
         canUseDoor = false;
         yield return new WaitForSeconds(0.2f);
         canUseDoor = true;
+    }
+    public void OpenEnemy(Transform enemy)
+    {
+        if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Close"))
+        {
+            Vector3 direction = enemy.position - transform.position;
+            float dot = Vector3.Dot(transform.forward, direction);
+
+            if (dot > 0)
+            {
+                Anim.SetTrigger("openF");
+                open = true;
+            }
+            else
+            {
+                Anim.SetTrigger("openB");
+                open = true;
+            }
+
+        }
     }
 }
