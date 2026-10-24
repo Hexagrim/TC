@@ -19,17 +19,16 @@ public class PlayerMovement : MonoBehaviour
     public bool crouching;
 
     float realSpeed;
+    public Transform upRayOrigin;
 
+    bool canStand;
     void Start()
     {
         controller = GetComponent<CharacterController>();
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         realSpeed = speed;
-        
     }
-
     
     void Update()
     {
@@ -77,11 +76,33 @@ public class PlayerMovement : MonoBehaviour
 
     void CrouchLogic()
     {
-        
+
+        Vector3 point1 = upRayOrigin.position;
+        Vector3 point2 = upRayOrigin.position + Vector3.up;
+        float radius = 0.1f;
+
+        Collider[] hits = Physics.OverlapCapsule(point1, point2, radius);
+
+        canStand = true;
+
+        foreach (Collider col in hits)
+        {
+            if (!col.isTrigger && col.transform.root != transform.root)
+            {
+                canStand = false;
+                break;
+            }
+        }
+
+        Debug.DrawLine(point1, point2, canStand ? Color.green : Color.red);
+       //gotta love the ternary operators :>
+
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (!crouching && )
-            crouching = !crouching;
+            if (canStand || !crouching)
+            {
+                crouching = !crouching;
+            }
         }
 
         if (crouching)
