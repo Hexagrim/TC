@@ -69,7 +69,7 @@ public class EnemyController : MonoBehaviour
                     if(timeSincePlayerLost >= losePlayerTime)
                     {
                         currentState = EnemyState.Patrolling;
-                        GoToClosestPatrolPoint();
+                        StartCoroutine(WaitAtLastPlayerPoint());
                     }
                 }
                 else
@@ -115,6 +115,15 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(patrolWaitTime);
         agent.isStopped = false;
         GoToNextPatrolPoint();
+        isWaiting = false;
+    }
+    IEnumerator WaitAtLastPlayerPoint()
+    {
+        isWaiting = true;
+        agent.isStopped = true;
+        yield return new WaitForSeconds(patrolWaitTime);
+        agent.isStopped = false;
+        GoToClosestPatrolPoint();
         isWaiting = false;
     }
     void Patrol()
