@@ -1,12 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
+
 public class IT_Door : Interactable
 {
     public Animator Anim;
     Transform player;
     bool canUseDoor = true;
     public bool open;
+
+    Coroutine cooldown;
     protected override void Start()
     {
         base.Start();
@@ -23,11 +26,13 @@ public class IT_Door : Interactable
 
             if (dot > 0)
             {
+                Anim.ResetTrigger("close");
                 Anim.SetTrigger("openF");
                 open = true;
             }
             else  
             {
+                Anim.ResetTrigger("close");
                 Anim.SetTrigger("openB");
                 open = true;
             }
@@ -39,14 +44,15 @@ public class IT_Door : Interactable
             Anim.SetTrigger("close");
             open = false;
         }
-        StartCoroutine(Cooldown());
+        cooldown = StartCoroutine(Cooldown());
     }
 
     IEnumerator Cooldown()
     {
         canUseDoor = false;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         canUseDoor = true;
+        cooldown = null;
     }
     public void OpenEnemy(Transform enemy)
     {
@@ -57,15 +63,23 @@ public class IT_Door : Interactable
 
             if (dot > 0)
             {
+                Anim.ResetTrigger("close");
                 Anim.SetTrigger("openF");
                 open = true;
             }
             else
             {
+                Anim.ResetTrigger("close");
                 Anim.SetTrigger("openB");
                 open = true;
             }
 
         }
+    }
+    public void CloseEnemy()
+    {
+        Anim.SetTrigger("close");
+        open = false;
+        if(cooldown == null ) StartCoroutine(Cooldown());
     }
 }
