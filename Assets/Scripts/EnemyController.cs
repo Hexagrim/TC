@@ -33,7 +33,6 @@ public class EnemyController : MonoBehaviour
 
     Coroutine closeDoorAfterPassing;
 
-
     void Awake()
     {
         player = FindAnyObjectByType<PlayerMovement>();
@@ -47,7 +46,6 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        
         float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
         switch (currentState)
@@ -78,6 +76,7 @@ public class EnemyController : MonoBehaviour
                 }
                 break;
         }
+
         UpdateAnimations();
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
@@ -108,6 +107,7 @@ public class EnemyController : MonoBehaviour
         //currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
     }
+
     IEnumerator WaitAtPatrolPoint()
     {
         isWaiting = true;
@@ -117,6 +117,7 @@ public class EnemyController : MonoBehaviour
         GoToNextPatrolPoint();
         isWaiting = false;
     }
+
     IEnumerator WaitAtLastPlayerPoint()
     {
         isWaiting = true;
@@ -126,6 +127,7 @@ public class EnemyController : MonoBehaviour
         GoToClosestPatrolPoint();
         isWaiting = false;
     }
+
     void Patrol()
     {
         if (isWaiting) return;
@@ -152,12 +154,14 @@ public class EnemyController : MonoBehaviour
     {
         return IsFacingPlayer() && HasClearPathToPlayer();
     }
+
     bool IsFacingPlayer()
     {
         var dirToPlayer = (player.transform.position - transform.position).normalized;
         var angle = Vector3.Angle(transform.forward, dirToPlayer);
         return angle <= viewAngle / 2;
     }
+
     bool HasClearPathToPlayer()
     {
         var dirToPlayer = player.transform.position - transform.position;
@@ -183,6 +187,7 @@ public class EnemyController : MonoBehaviour
         {
             //normal code: var distance = Vector3.Distance(transform.position, patrolPoints[i].position);
             //this is for prioritising the distance on x and z more than y, so it doesnt go to upper floor rooms as closest:
+            
             var difference = transform.position - patrolPoints[i].position;
             var distance = new Vector2(difference.x, difference.z).magnitude + Mathf.Abs(difference.y) * 5f;
             if (distance < closestDistance)
@@ -191,9 +196,12 @@ public class EnemyController : MonoBehaviour
                 closestIndex = i;
             }
         }
+
         currentPatrolIndex = closestIndex;
         agent.SetDestination(patrolPoints[closestIndex].position);
         Debug.Log(closestIndex);
         Debug.Log(currentPatrolIndex);
+
     }
+
 }
