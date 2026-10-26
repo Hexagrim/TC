@@ -181,8 +181,11 @@ public class EnemyController : MonoBehaviour
 
         for(var i = 0;  i < patrolPoints.Length; i++)
         {
-            var distance = Vector3.Distance(transform.position, patrolPoints[i].position);
-            if(distance < closestDistance)
+            //normal code: var distance = Vector3.Distance(transform.position, patrolPoints[i].position);
+            //this is for prioritising the distance on x and z more than y, so it doesnt go to upper floor rooms as closest:
+            var difference = transform.position - patrolPoints[i].position;
+            var distance = new Vector2(difference.x, difference.z).magnitude + Mathf.Abs(difference.y) * 5f;
+            if (distance < closestDistance)
             {
                 closestDistance = distance;
                 closestIndex = i;
