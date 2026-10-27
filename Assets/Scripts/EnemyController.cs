@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
 using System.Collections;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +16,7 @@ public class EnemyController : MonoBehaviour
     public Animator Anim;
 
     [Header("settings")]
+
     public Transform[] patrolPoints;
     public float patrolWaitTime = 2f;
     public float stopDistance = 0.5f;
