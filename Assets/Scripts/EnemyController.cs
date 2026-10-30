@@ -1,7 +1,10 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public enum EnemyState
 {
@@ -98,11 +101,12 @@ public class EnemyController : MonoBehaviour
         if (patrolPoints.Length == 0) return;
         int nextIndex;
         // first time using do/while. turns out unity doesnt have a fking exclude from random range function
-
+        //linq for the clutchh, takes closest n number of points
+        Transform[] closestPoints = patrolPoints.OrderBy(i => Vector3.Distance(patrolPoints[currentPatrolIndex].position, i.position)).Take(4).ToArray();
         
-        do nextIndex = Random.Range(0, patrolPoints.Length);
+        do nextIndex = UnityEngine.Random.Range(0, closestPoints.Length);
         while (nextIndex == currentPatrolIndex);
-        currentPatrolIndex = nextIndex;
+        currentPatrolIndex = Array.IndexOf(patrolPoints, closestPoints[nextIndex]);
        
         //currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
@@ -152,6 +156,8 @@ public class EnemyController : MonoBehaviour
 
     bool CanSeePlayer()
     {
+        //Debug.Log(HasClearPathToPlayer().ToString() + IsFacingPlayer().ToString());
+
         return IsFacingPlayer() && HasClearPathToPlayer();
     }
 
@@ -170,6 +176,7 @@ public class EnemyController : MonoBehaviour
             return hit.transform == player.transform;
         }
         return true;
+
     }
 
     void FollowPlayer()
@@ -195,6 +202,7 @@ public class EnemyController : MonoBehaviour
                 closestDistance = distance;
                 closestIndex = i;
             }
+
         }
 
         currentPatrolIndex = closestIndex;
