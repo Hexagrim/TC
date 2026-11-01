@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
     public float losePlayerTime = 4f;
     public float chaseSpeed;
     public float patrolSpeed;
-    
+
     int currentPatrolIndex;
     bool isWaiting;
     float timeSincePlayerLost;
@@ -64,10 +64,10 @@ public class EnemyController : MonoBehaviour
             case EnemyState.Following:
                 FollowPlayer();
                 agent.speed = chaseSpeed;
-                if(!CanSeePlayer())
+                if (!CanSeePlayer())
                 {
                     timeSincePlayerLost += Time.deltaTime;
-                    if(timeSincePlayerLost >= losePlayerTime)
+                    if (timeSincePlayerLost >= losePlayerTime)
                     {
                         currentState = EnemyState.Patrolling;
                         StartCoroutine(WaitAtLastPlayerPoint());
@@ -87,7 +87,7 @@ public class EnemyController : MonoBehaviour
             if (hit.collider.GetComponent<IT_Door>())
             {
                 hit.collider.GetComponent<IT_Door>().OpenEnemy(transform);
-                
+
                 if (closeDoorAfterPassing == null)
                 {
                     closeDoorAfterPassing = StartCoroutine(CloseDoor(hit.collider.GetComponent<IT_Door>()));
@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    
+
     void GoToNextPatrolPoint()
     {
         if (patrolPoints.Length == 0) return;
@@ -103,11 +103,11 @@ public class EnemyController : MonoBehaviour
         // first time using do/while. turns out unity doesnt have a fking exclude from random range function
         //linq for the clutchh, takes closest n number of points
         Transform[] closestPoints = patrolPoints.OrderBy(i => Vector3.Distance(patrolPoints[currentPatrolIndex].position, i.position)).Take(4).ToArray();
-        
+
         do nextIndex = UnityEngine.Random.Range(0, closestPoints.Length);
         while (nextIndex == currentPatrolIndex);
         currentPatrolIndex = Array.IndexOf(patrolPoints, closestPoints[nextIndex]);
-       
+
         //currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
     }
@@ -171,7 +171,7 @@ public class EnemyController : MonoBehaviour
     bool HasClearPathToPlayer()
     {
         var dirToPlayer = player.transform.position - transform.position;
-        if(Physics.Raycast(transform.position,dirToPlayer.normalized,out RaycastHit hit, dirToPlayer.magnitude))
+        if (Physics.Raycast(transform.position, dirToPlayer.normalized, out RaycastHit hit, dirToPlayer.magnitude))
         {
             return hit.transform == player.transform;
         }
@@ -190,11 +190,11 @@ public class EnemyController : MonoBehaviour
         var closestIndex = 0;
         var closestDistance = float.MaxValue;
 
-        for(var i = 0;  i < patrolPoints.Length; i++)
+        for (var i = 0; i < patrolPoints.Length; i++)
         {
             //normal code: var distance = Vector3.Distance(transform.position, patrolPoints[i].position);
             //this is for prioritising the distance on x and z more than y, so it doesnt go to upper floor rooms as closest:
-            
+
             var difference = transform.position - patrolPoints[i].position;
             var distance = new Vector2(difference.x, difference.z).magnitude + Mathf.Abs(difference.y) * 5f;
             if (distance < closestDistance)
@@ -213,3 +213,4 @@ public class EnemyController : MonoBehaviour
     }
 
 }
+
