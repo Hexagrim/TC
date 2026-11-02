@@ -14,6 +14,8 @@ public class PickItem : MonoBehaviour
 
     //HANDS
     public Transform torchHand;
+    public Transform keyHand;
+
     //HANDS
     void Start()
     {
@@ -98,6 +100,10 @@ public class PickItem : MonoBehaviour
         else if(heldItem.itemName == "torch")
         {
             heldItem.transform.SetParent(torchHand);
+        }
+        else if(heldItem.itemName == "key")
+        {
+            heldItem.transform.SetParent(keyHand);
         }
     }
 }
