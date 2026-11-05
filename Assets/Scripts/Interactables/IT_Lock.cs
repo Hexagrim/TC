@@ -54,4 +54,5 @@ public class IT_Lock : Interactable
         if (unlocked) return;
         unlocked = false;
     }
+    
 }

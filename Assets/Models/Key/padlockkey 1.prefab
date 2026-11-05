@@ -9,32 +9,44 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.037001
+      value: -10.244
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.39
+      value: -3.1509998
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.635002
+      value: -13.028999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000021855694
+      value: 0.000001013279
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.000001013279
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -59,7 +71,7 @@ PrefabInstance:
     - target: {fileID: -5754084199372789682, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -2124705421725058983, guid: 88a07f916b20ece48a9c8d512fa18a3a, type: 3}
+      objectReference: {fileID: -2124705421725058983, guid: 8e257afc987537b479b423470ce0edb5, type: 3}
     - target: {fileID: 919132149155446097, guid: 84fe7808ecf081045848f838964e90dc, type: 3}
       propertyPath: m_Name
       value: padlockkey 1
@@ -95,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7323ee1bead86408c6d6341bd16c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::I_Key
-  itemName: key
+  itemName: plkey
   Lock: {fileID: 0}
 --- !u!54 &4215498245950023238
 Rigidbody:
@@ -113,17 +125,17 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 119
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &2313395881934973468
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -143,5 +155,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0057268143, y: 0.0003197185, z: 0.0024096488}
-  m_Center: {x: 0.00081686984, y: 0, z: 0}
+  m_Size: {x: 0.0060046576, y: 0.0027345782, z: 0.00045894698}
+  m_Center: {x: 0.0009933979, y: 0.00005109777, z: -0.0000058360456}
