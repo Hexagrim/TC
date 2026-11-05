@@ -36,7 +36,7 @@ public class Interact : MonoBehaviour
             lookObject = null;
         }
 
-        lookingCrosshair.SetActive(lookObject != null);
+        lookingCrosshair.SetActive(lookObject != null && lookObject.canUse);
 
         if (Input.GetKeyDown(KeyCode.F) && lookObject!=null)
         {
