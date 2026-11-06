@@ -27,16 +27,19 @@ public class IT_Screw : Interactable
 
     bool IsHoldingScrewDriver()
     {
-        return true;
-        //player.heldItem.GetComponent<I_ScrewDriver>();
+        return player.heldItem.GetComponent<I_ScrewDriver>();
     }
+
     IEnumerator OpenScrew()
     {
+
         anim.SetTrigger("open");
         yield return new WaitForSeconds(0.6f);
         screwModel.isKinematic = false;
         screwModel.AddForce(screwModel.transform.right * Random.Range(200, 300));
         screwModel.transform.SetParent(null);
         Destroy(gameObject);
+
     }
+
 }

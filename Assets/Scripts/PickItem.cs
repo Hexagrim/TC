@@ -16,6 +16,7 @@ public class PickItem : MonoBehaviour
     public Transform torchHand;
     public Transform keyHand;
     public Transform plKeyHand;
+    public Transform sdHand;
     //HANDS
     void Start()
     {
@@ -85,7 +86,7 @@ public class PickItem : MonoBehaviour
     {
         heldItem.Drop();
         heldItem.transform.parent = null;
-        heldItem.transform.position = transform.position;
+        heldItem.transform.position = Camera.main.transform.position + (Vector3.down * 0.5f);
         heldItem.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 200);
 
         heldItem = null;
@@ -108,6 +109,10 @@ public class PickItem : MonoBehaviour
         else if(heldItem.itemName == "plkey")
         {
             heldItem.transform.SetParent(plKeyHand);
+        }
+        else if(heldItem.itemName == "screwdriver")
+        {
+            heldItem.transform.SetParent(sdHand);
         }
     }
 }
