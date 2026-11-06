@@ -31,6 +31,11 @@ public class Item : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = false;
         GetComponent<Collider>().isTrigger = false;
         gameObject.layer = objectLayer;
+        GetComponent<Rigidbody>().AddTorque(
+            new Vector3(Random.Range(-0.05f, 0.05f), 0f, Random.Range(-0.05f, 0.05f)),
+            ForceMode.Impulse
+        );
+        Debug.Log("DONEEEEEEEE");
     }
     
 }
