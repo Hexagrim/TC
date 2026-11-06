@@ -17,6 +17,7 @@ public class PickItem : MonoBehaviour
     public Transform keyHand;
     public Transform plKeyHand;
     public Transform sdHand;
+    public Transform wcHand;
     //HANDS
     void Start()
     {
@@ -113,6 +114,10 @@ public class PickItem : MonoBehaviour
         else if(heldItem.itemName == "screwdriver")
         {
             heldItem.transform.SetParent(sdHand);
+        }
+        else if(heldItem.itemName == "wirecutter")
+        {
+            heldItem.transform.SetParent(wcHand);
         }
     }
 }
