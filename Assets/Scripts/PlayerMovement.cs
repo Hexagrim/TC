@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform upRayOrigin;
 
     bool canStand;
+    public Transform cameraHolder;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -128,6 +129,15 @@ public class PlayerMovement : MonoBehaviour
                 controller.height = 2f;
             }
             realSpeed = speed;
+        }
+
+        if (crouching)
+        {
+            cameraHolder.transform.localPosition = new Vector3(0, 0.6f, 0);
+        }
+        else
+        {
+            cameraHolder.transform.localPosition = new Vector3(0,1,0);
         }
     }
 }

@@ -64,8 +64,8 @@ public class IT_FuseBox : Interactable
     }
     bool IsHoldingWireCutter()
     {
-        //return player.heldItem.GetComponent<I_WireCutter>(); add laterrt
-        return true;
+        
+        return player.heldItem.GetComponent<I_WireCutter>();
     }
     
     
