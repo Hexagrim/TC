@@ -19,6 +19,7 @@ public class PickItem : MonoBehaviour
     public Transform sdHand;
     public Transform wcHand;
     public Transform vwHand;
+    public Transform bookHand;  
     //HANDS
     void Start()
     {
@@ -123,6 +124,10 @@ public class PickItem : MonoBehaviour
         else if (heldItem.itemName == "valvewheel")
         {
             heldItem.transform.SetParent(vwHand);
+        }
+        else if (heldItem.itemName == "book")
+        {
+            heldItem.transform.SetParent(bookHand);
         }
     }
 }

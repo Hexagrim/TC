@@ -43,6 +43,7 @@ public class IT_Valve : Interactable
 
     bool IsHoldingValveWheel()
     {
+        if (player.heldItem == null) return false;
         return player.heldItem.GetComponent<I_ValveWheel>();
     }
 
