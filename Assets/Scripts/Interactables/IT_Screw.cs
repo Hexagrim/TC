@@ -27,6 +27,7 @@ public class IT_Screw : Interactable
 
     bool IsHoldingScrewDriver()
     {
+        if (player.heldItem == null) return false;
         return player.heldItem.GetComponent<I_ScrewDriver>();
     }
 
