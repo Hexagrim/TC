@@ -19,7 +19,8 @@ public class PickItem : MonoBehaviour
     public Transform sdHand;
     public Transform wcHand;
     public Transform vwHand;
-    public Transform bookHand;  
+    public Transform bookHand;
+    public Transform cbHand;
     //HANDS
     void Start()
     {
@@ -128,6 +129,10 @@ public class PickItem : MonoBehaviour
         else if (heldItem.itemName == "book")
         {
             heldItem.transform.SetParent(bookHand);
+        }
+        else if (heldItem.itemName == "crowbar")
+        {
+            heldItem.transform.SetParent(cbHand);
         }
     }
 }
