@@ -49,8 +49,8 @@ public class PickItem : MonoBehaviour
 
         //handle the crosshair change:
 
-        lookingCrosshair.SetActive(lookItem != null);
-        Debug.DrawRay(Camera.main.transform.position + Camera.main.transform.forward * 0.5f, Camera.main.transform.forward * range, (lookItem == null)? Color.red : Color.green);
+        lookingCrosshair.SetActive(lookItem != null && lookItem!= heldItem);
+        //Debug.DrawRay(Camera.main.transform.position + Camera.main.transform.forward * 0.5f, Camera.main.transform.forward * range, (lookItem == null)? Color.red : Color.green);
 
 
         //picking it up
