@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class IT_BookSlot : Interactable
 {
-
+    //yes : 
     Animator anim;
     PickItem player;
-
-    bool placed = false;
+    
+    public bool placed = false;
     public string bookColor;
 
     protected override void Start()
@@ -29,7 +29,7 @@ public class IT_BookSlot : Interactable
     {
         base.OnUse();
 
-        if (IsHoldingValveWheel())
+        if (IsHoldingBook())
         {
             placed = true;
 
@@ -43,7 +43,7 @@ public class IT_BookSlot : Interactable
 
     }
 
-    bool IsHoldingValveWheel()
+    bool IsHoldingBook()
     {
 
         if (player.heldItem == null) return false;
