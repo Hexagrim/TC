@@ -108,36 +108,36 @@ public class PlayerMovement : MonoBehaviour
 
         if (crouching)
         {
-            if (controller.height >= 1f)
+            if (controller.height >= 1.5f)
             {
-                controller.height = Mathf.Lerp(controller.height, 1f, Time.deltaTime * 20f);
+                controller.height = Mathf.Lerp(controller.height, 1.5f, Time.deltaTime * 20f);
             }
             else
             {
-                controller.height = 1f;
+                controller.height = 1.5f;
             }
             realSpeed = 0.5f * speed;
         }
         else
         {
-            if (controller.height <= 2f)
+            if (controller.height <= 2.5f)
             {
-                controller.height = Mathf.Lerp(controller.height, 2f, Time.deltaTime * 20f);
+                controller.height = Mathf.Lerp(controller.height, 2.5f, Time.deltaTime * 20f);
             }
             else
             {
-                controller.height = 2f;
+                controller.height = 2.5f;
             }
             realSpeed = speed;
         }
 
         if (crouching)
         {
-            cameraHolder.transform.localPosition = new Vector3(0, 0.6f, 0);
+            cameraHolder.transform.localPosition = new Vector3(0, 0.75f, 0);
         }
         else
         {
-            cameraHolder.transform.localPosition = new Vector3(0,1,0);
+            cameraHolder.transform.localPosition = new Vector3(0,1.5f,0);
         }
     }
 }
