@@ -7,7 +7,7 @@ public class Interact : MonoBehaviour
     Interactable lookObject;
 
     public GameObject lookingCrosshair;
-
+    public LayerMask ignoreLayer;
     void Start()
     {
         
@@ -19,7 +19,7 @@ public class Interact : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, range))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, range , ~ignoreLayer ))
         {
             if (hit.collider.GetComponent<Interactable>())
             {
