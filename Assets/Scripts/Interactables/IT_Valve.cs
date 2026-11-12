@@ -10,11 +10,13 @@ public class IT_Valve : Interactable
 
     bool used = false;
 
+    SmokeArea steamArea;
     protected override void Start()
     {
         base.Start();
         anim = GetComponent<Animator>();
         player = FindAnyObjectByType<PickItem>();
+        steamArea = FindAnyObjectByType<SmokeArea>();
        
     }
 
@@ -22,6 +24,7 @@ public class IT_Valve : Interactable
     {
         base.Update();
         anim.SetBool("used", used);
+        
     }
 
     public override void OnUse()
@@ -32,8 +35,10 @@ public class IT_Valve : Interactable
         {
             used = true;
 
-            //removing the object from here is prolly not a good idea but im too lazy(T n T)
+            //to remove the steam area:
+            steamArea.CloseSmoke();
 
+            //removing the object from here is prolly not a good idea but im too lazy(T n T)
             Destroy(player.heldItem.gameObject);
             player.heldItem = null;
             Destroy(this, 0.1f);
