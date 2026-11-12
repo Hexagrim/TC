@@ -22,6 +22,7 @@ public class PickItem : MonoBehaviour
     public Transform bookHand;
     public Transform cbHand;
     public Transform vaseHand;
+    public Transform plankHand;
     //HANDS
     void Start()
     {
@@ -103,19 +104,19 @@ public class PickItem : MonoBehaviour
         {
             heldItem.transform.SetParent(itemHand);
         }
-        else if(heldItem.itemName == "torch")
+        else if (heldItem.itemName == "torch")
         {
             heldItem.transform.SetParent(torchHand);
         }
-        else if(heldItem.itemName == "key")
+        else if (heldItem.itemName == "key")
         {
             heldItem.transform.SetParent(keyHand);
         }
-        else if(heldItem.itemName == "plkey")
+        else if (heldItem.itemName == "plkey")
         {
             heldItem.transform.SetParent(plKeyHand);
         }
-        else if(heldItem.itemName == "screwdriver")
+        else if (heldItem.itemName == "screwdriver")
         {
             heldItem.transform.SetParent(sdHand);
         }
@@ -138,6 +139,11 @@ public class PickItem : MonoBehaviour
         else if (heldItem.itemName == "vase")
         {
             heldItem.transform.SetParent(vaseHand);
+
+        }
+        else if (heldItem.itemName == "plank")
+        {
+            heldItem.transform.SetParent(plankHand);
         }
     }
 }
