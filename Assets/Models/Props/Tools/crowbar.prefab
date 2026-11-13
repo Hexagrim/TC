@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7222510160028258334}
   - component: {fileID: 1901344481963383213}
   - component: {fileID: 3712633212333123826}
-  - component: {fileID: 8607722707485583232}
+  - component: {fileID: 8947563441307060652}
   m_Layer: 0
   m_Name: crowbar
   m_TagString: Untagged
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782700817078423974}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 13.459, y: 1.4641, z: -17.306}
-  m_LocalScale: {x: 0.5665782, y: 0.8685385, z: 0.6934256}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2932515, y: 0.44954124, z: 0.3589056}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 89.98, y: 0, z: 0}
 --- !u!33 &5900309753443574990
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782700817078423974}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 73fa3377cb6054840a0e8ca7234eab51, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 119
@@ -142,8 +142,8 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &8607722707485583232
+  m_CollisionDetection: 2
+--- !u!114 &8947563441307060652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 782700817078423974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ab094eaa1765344be6cb8a1b0dd50c, type: 3}
+  m_Script: {fileID: 11500000, guid: edaaaa52f80ba954ea79c2b07c769d11, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: key
+  m_EditorClassIdentifier: Assembly-CSharp::I_CrowBar
+  itemName: crowbar
