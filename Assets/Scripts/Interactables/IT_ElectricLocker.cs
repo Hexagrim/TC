@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class IT_ElectricLocker : Interactable
 {
+
     public Animator Anim;
     Transform player;
     bool canUseChest = true;
     public bool open = false;
     IT_FuseBox fuseBox;
     public GameObject greenLight, redLight;
+
     protected override void Start()
     {
         base.Start();
@@ -24,6 +26,7 @@ public class IT_ElectricLocker : Interactable
         StartCoroutine(Cooldown());
 
     }
+
     protected override void Update()
     {
         base.Update();
@@ -34,6 +37,7 @@ public class IT_ElectricLocker : Interactable
 
         canUse = fuseBox.cut;
     }
+
     IEnumerator Cooldown()
     {
         canUseChest = false;
