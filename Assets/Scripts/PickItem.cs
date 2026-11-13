@@ -11,7 +11,6 @@ public class PickItem : MonoBehaviour
 
     public Item heldItem;
 
-
     //HANDS
     public Transform torchHand;
     public Transform keyHand;
@@ -24,6 +23,7 @@ public class PickItem : MonoBehaviour
     public Transform vaseHand;
     public Transform plankHand;
     //HANDS
+
     void Start()
     {
         
