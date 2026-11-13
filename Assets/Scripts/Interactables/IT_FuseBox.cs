@@ -8,7 +8,7 @@ public class IT_FuseBox : Interactable
 {
     private Animator anim;
     public bool open = false;
-    bool cut;
+    public bool cut;
 
     public GameObject jointWire, cutWire;
     private PickItem player;
