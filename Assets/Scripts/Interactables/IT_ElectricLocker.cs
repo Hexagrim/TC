@@ -8,11 +8,13 @@ public class IT_ElectricLocker : Interactable
     Transform player;
     bool canUseChest = true;
     public bool open = false;
-
+    IT_FuseBox fuseBox;
+    public GameObject greenLight, redLight;
     protected override void Start()
     {
         base.Start();
         player = FindAnyObjectByType<PlayerMovement>().transform;
+        fuseBox = FindAnyObjectByType<IT_FuseBox>();
     }
     public override void OnUse()
     {
@@ -22,11 +24,15 @@ public class IT_ElectricLocker : Interactable
         StartCoroutine(Cooldown());
 
     }
-
     protected override void Update()
     {
         base.Update();
         Anim.SetBool("open", open);
+        
+        redLight.SetActive(!canUse);
+        greenLight.SetActive(canUse);
+
+        canUse = fuseBox.cut;
     }
     IEnumerator Cooldown()
     {
@@ -34,4 +40,6 @@ public class IT_ElectricLocker : Interactable
         yield return new WaitForSeconds(0.1f);
         canUseChest = true;
     }
+
+
 }
