@@ -22,6 +22,7 @@ public class PickItem : MonoBehaviour
     public Transform cbHand;
     public Transform vaseHand;
     public Transform plankHand;
+    public Transform kcHand;
     //HANDS
 
     void Start()
@@ -144,6 +145,10 @@ public class PickItem : MonoBehaviour
         else if (heldItem.itemName == "plank")
         {
             heldItem.transform.SetParent(plankHand);
+        }
+        else if (heldItem.itemName == "keycard")
+        {
+            heldItem.transform.SetParent(kcHand);
         }
     }
 }
