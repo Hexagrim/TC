@@ -3,15 +3,16 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public string itemName;
-    int objectLayer;    
+    int objectLayer;
+
     protected virtual void Start()
     {
         objectLayer = gameObject.layer;
+
     }
 
     protected virtual void Update()
     {
-        
     }
 
     public virtual void Use()
@@ -37,5 +38,5 @@ public class Item : MonoBehaviour
         );
         Debug.Log("DONEEEEEEEE");
     }
-    
+
 }
