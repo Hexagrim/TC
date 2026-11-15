@@ -2,14 +2,15 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Linq;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
-
 public enum EnemyState
 {
     Patrolling,
-    Following
+    Following,
+    Attacking
 }
 
 public class EnemyController : MonoBehaviour
@@ -28,10 +29,15 @@ public class EnemyController : MonoBehaviour
     public float losePlayerTime = 4f;
     public float chaseSpeed;
     public float patrolSpeed;
+    public Transform enemyHead;
+    public float attackRange = 1.2f;
+
 
     int currentPatrolIndex;
     bool isWaiting;
     float timeSincePlayerLost;
+    bool attacking;
+
     EnemyState currentState = EnemyState.Patrolling;
 
     Coroutine closeDoorAfterPassing;
@@ -62,8 +68,15 @@ public class EnemyController : MonoBehaviour
                 }
                 break;
             case EnemyState.Following:
+
                 FollowPlayer();
                 agent.speed = chaseSpeed;
+
+                if(distanceToPlayer <= attackRange)
+                {
+                    currentState = EnemyState.Attacking;
+                }
+
                 if (!CanSeePlayer())
                 {
                     timeSincePlayerLost += Time.deltaTime;
@@ -78,9 +91,15 @@ public class EnemyController : MonoBehaviour
                     timeSincePlayerLost = 0f;
                 }
                 break;
+            case EnemyState.Attacking:
+                if(!attacking) StartAttack();
+                //Invoke(EndDay());
+                break;
         }
 
         UpdateAnimations();
+        LookAtPlayerWhenChasing();
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
         {
@@ -94,6 +113,17 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
+    }
+    
+    void StartAttack()
+    {
+        agent.isStopped = true;
+        attacking = true;
+        //probably not the way to go, but it works for now:
+        player.GetComponent<PickItem>().enabled = false;
+        player.GetComponent<Interact>().enabled = false;
+        player.enabled = false;
+        Anim.SetBool("IsAttacking", true);
     }
 
     void GoToNextPatrolPoint()
@@ -216,6 +246,24 @@ public class EnemyController : MonoBehaviour
         Debug.Log(closestIndex);
         Debug.Log(currentPatrolIndex);
 
+    }
+
+    void LookAtPlayerWhenChasing()
+    {
+        if (enemyHead == null) return;
+        if (currentState != EnemyState.Following) return;
+        Vector3 direction = Camera.main.transform.position - enemyHead.position;
+        Quaternion targetWorldRotation = Quaternion.LookRotation(direction);
+        Vector3 targetLocalRotation = (Quaternion.Inverse(transform.rotation) * targetWorldRotation).eulerAngles;
+        float yRotation = Mathf.Clamp(Mathf.DeltaAngle(0f, targetLocalRotation.y), -80f, 80f);
+
+        Quaternion targetRotation = Quaternion.Euler(0f, yRotation, 0f);
+
+        enemyHead.localRotation = Quaternion.Lerp(
+            enemyHead.localRotation,
+            targetRotation,
+            Time.deltaTime * 5f
+        );
     }
 
 }
