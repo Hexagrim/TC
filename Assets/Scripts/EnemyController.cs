@@ -143,7 +143,13 @@ public class EnemyController : MonoBehaviour
     }
     void UpdateAnimations()
     {
-        //empty for now since no model/animations
+        //NOW IMA ANIMATEEEEEE
+
+        bool isMoving = agent.velocity.sqrMagnitude > 0.1f;
+        Anim.SetBool("IsWalking", isMoving);
+
+        Anim.SetBool("IsChasing", isMoving && currentState == EnemyState.Following);
+
     }
 
     IEnumerator CloseDoor(IT_Door usedDoor)
