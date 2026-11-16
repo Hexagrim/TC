@@ -44,6 +44,10 @@ public class IT_Valve : Interactable
             Destroy(this, 0.1f);
             
         }
+        else
+        {
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("A need a valve wheel..");
+        }
     }
 
     bool IsHoldingValveWheel()

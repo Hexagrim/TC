@@ -25,6 +25,10 @@ public class IT_Plank : Interactable
             plankModel.AddForce(plankModel.transform.right * Random.Range(200, 300));
             Destroy(this, 0.05f);
         }
+        else
+        {
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("A crowbar might help..");
+        }
     }
 
     bool IsHoldingCrowBar()

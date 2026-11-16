@@ -47,6 +47,10 @@ public class IT_Crate : Interactable
             Destroy(this, 0.1f);
             
         }
+        else
+        {
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("I need a crowbar");
+        }
     }
 
     bool IsHoldingCrowbar()

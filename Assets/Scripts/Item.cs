@@ -13,6 +13,7 @@ public class Item : MonoBehaviour
 
     protected virtual void Update()
     {
+
     }
 
     public virtual void Use()
@@ -38,5 +39,6 @@ public class Item : MonoBehaviour
         );
         Debug.Log("DONEEEEEEEE");
     }
+
 
 }

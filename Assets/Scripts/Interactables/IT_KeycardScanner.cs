@@ -31,6 +31,10 @@ public class IT_KeycardScanner : Interactable
             StartCoroutine(UseKeycard());
             player.heldItem = null;
         }
+        else
+        {
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("Seems like i need a keycard..");
+        }
 
     }
 

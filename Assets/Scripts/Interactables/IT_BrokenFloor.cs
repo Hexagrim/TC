@@ -36,6 +36,10 @@ public class IT_BrokenFloor : Interactable
             Destroy(this, 0.1f);
             
         }
+        else
+        {
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("I need a wooden plank");
+        }
     }
 
     bool IsHoldingPlank()

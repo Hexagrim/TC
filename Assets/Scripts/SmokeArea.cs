@@ -7,7 +7,6 @@ public class SmokeArea : MonoBehaviour
     public GameObject smoke1, smoke2;
     Collider[] smokeCollider;
     public bool closed = false;
-    bool warning = false;
     
     void Start()
     {
@@ -34,15 +33,8 @@ public class SmokeArea : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (!warning) StartCoroutine(ShowWarning());
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("Its too hot. I can't go there..");
         }
     }
 
-    IEnumerator ShowWarning()
-    {
-        warning = true;
-        Debug.Log("The steam is too hot");
-        yield return new WaitForSeconds(2);
-        warning = false;
-    }
 }

@@ -23,6 +23,10 @@ public class IT_Screw : Interactable
         {
             StartCoroutine(OpenScrew());
         }
+        else
+        {
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("Who opens screws without a screwdriver?, idiot");
+        }
     }
 
     bool IsHoldingScrewDriver()

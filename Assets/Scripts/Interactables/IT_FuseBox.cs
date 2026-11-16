@@ -27,13 +27,19 @@ public class IT_FuseBox : Interactable
         base.OnUse();
         if (open)
         {
-            if (!cut && IsHoldingWireCutter())
+            if (IsHoldingWireCutter())
             {
-                cut = true;
+                if (!cut)
+                {
+                    cut = true;
+                    FindAnyObjectByType<UI_Manager>().ShowPrompt("A lock might have opened!");
+                }
+                
             }
             else
             {
                 open = false;
+                FindAnyObjectByType<UI_Manager>().ShowPrompt("I could use a wirecutter..");
             }
         }
         else
@@ -52,6 +58,7 @@ public class IT_FuseBox : Interactable
         jointWire.SetActive(!cut);
 
         //check for screws:
+
 
         if (Array.TrueForAll(screws, obj => obj == null))
         {

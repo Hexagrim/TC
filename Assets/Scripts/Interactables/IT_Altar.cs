@@ -37,6 +37,10 @@ public class IT_Altar : Interactable
             Destroy(this, 0.1f);
             
         }
+        else
+        {
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("What are the chances this random thing needs a vase? pftt");
+        }
     }
 
     bool IsHoldingVase()

@@ -28,6 +28,10 @@ public class IT_Lock : Interactable
         {
             TryUnlock(pickMechanic.heldItem.GetComponent<I_Key>());
         }
+        else
+        {
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("I need a key..");
+        }
     }
 
     protected virtual void TryUnlock(I_Key usedKey)
@@ -47,12 +51,14 @@ public class IT_Lock : Interactable
     {
         if (unlocked) return;
         unlocked = true;
+
     }
 
     protected virtual void WrongKey()
     {
         if (unlocked) return;
         unlocked = false;
+        FindAnyObjectByType<UI_Manager>().ShowPrompt("This key doesnt work..");
     }
     
 }

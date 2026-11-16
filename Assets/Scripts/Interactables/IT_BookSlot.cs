@@ -40,6 +40,10 @@ public class IT_BookSlot : Interactable
             Destroy(this, 0.1f);
             
         }
+        else
+        {
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("I need a book");
+        }
 
     }
 
