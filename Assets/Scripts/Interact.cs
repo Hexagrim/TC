@@ -18,6 +18,7 @@ public class Interact : MonoBehaviour
     void Update()
     {
         //same logic as the item thingy:
+
         if (paused) return;
         RaycastHit hit;
 

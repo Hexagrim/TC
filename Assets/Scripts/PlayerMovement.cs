@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraHolder;
 
     public bool paused;
+    public Slider sensSlider;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -146,8 +148,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void AdjustSens(float sensMult)
+    public void AdjustSens()
     {
-        sens = sensMult * 1;
+        sens = sensSlider.value + 0.1f;
     }
 }

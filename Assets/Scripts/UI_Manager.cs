@@ -17,6 +17,9 @@ public class UI_Manager : MonoBehaviour
 
     public GameObject pauseMenu;
 
+
+    public bool gameEnded;
+    public Animator endUI;
     void Start()
     {
         promptAnim = promptText.GetComponent<Animator>();
@@ -90,5 +93,13 @@ public class UI_Manager : MonoBehaviour
     public void Quit()
     {
         SceneManager.LoadSceneAsync("MainMenu");
+    }
+
+    IEnumerator EndCredit()
+    {
+        endUI.SetTrigger("end");
+        yield return new WaitForSeconds(25);
+        SceneManager.LoadSceneAsync("MainMenu");
+
     }
 }
