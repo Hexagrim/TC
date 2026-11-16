@@ -6,6 +6,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 public enum EnemyState
 {
     Patrolling,
@@ -118,6 +119,7 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
+
     }
     
     void StartAttack()
@@ -136,6 +138,8 @@ public class EnemyController : MonoBehaviour
         player.GetComponent<Interact>().enabled = false;
         player.enabled = false;
         Anim.SetBool("IsAttacking", true);
+        StartCoroutine(SendPlayerToMenu());
+        
     }
 
     void GoToNextPatrolPoint()
@@ -144,8 +148,7 @@ public class EnemyController : MonoBehaviour
         int nextIndex;
         // first time using do/while. turns out unity doesnt have a fking exclude from random range function
         //linq for the clutchh, takes closest n number of points
-        Transform[] closestPoints = patrolPoints.OrderBy(i => Vector3.Distance(patrolPoints[currentPatrolIndex].position, i.position)).Take(5).ToArray();
-
+        Transform[] closestPoints = patrolPoints.OrderBy(i => Vector3.Distance(patrolPoints[currentPatrolIndex].position, i.position)).Take(7).ToArray();
         do nextIndex = UnityEngine.Random.Range(0, closestPoints.Length);
         while (nextIndex == currentPatrolIndex);
         currentPatrolIndex = Array.IndexOf(patrolPoints, closestPoints[nextIndex]);
@@ -156,22 +159,35 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator WaitAtPatrolPoint()
     {
+
         isWaiting = true;
         agent.isStopped = true;
         yield return new WaitForSeconds(patrolWaitTime);
         agent.isStopped = false;
         GoToNextPatrolPoint();
         isWaiting = false;
-    }
 
+    }
+    IEnumerator SendPlayerToMenu()
+    {
+
+        yield return new WaitForSeconds(2f);
+        FindAnyObjectByType<UI_Manager>().t_anim.SetTrigger("fadeOut");
+        yield return new WaitForSeconds(1f);
+        //send player to menu
+        SceneManager.LoadSceneAsync("MainMenu");
+
+    }
     IEnumerator WaitAtLastPlayerPoint()
     {
+
         isWaiting = true;
         agent.isStopped = true;
         yield return new WaitForSeconds(patrolWaitTime);
         agent.isStopped = false;
         GoToClosestPatrolPoint();
         isWaiting = false;
+
     }
 
     void Patrol()
