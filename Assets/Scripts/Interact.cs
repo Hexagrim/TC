@@ -19,7 +19,7 @@ public class Interact : MonoBehaviour
     {
         //same logic as the item thingy:
 
-        if (paused) return;
+        if (paused || FindAnyObjectByType<UI_Manager>().gameEnded) return;
         RaycastHit hit;
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, range , ~ignoreLayer ))

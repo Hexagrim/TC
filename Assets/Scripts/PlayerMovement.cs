@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        if(paused) return;
+        if(paused || FindAnyObjectByType<UI_Manager>().gameEnded) return;
 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");

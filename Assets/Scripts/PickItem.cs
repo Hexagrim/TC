@@ -33,7 +33,8 @@ public class PickItem : MonoBehaviour
 
     void Update()
     {
-        if (paused) return;
+        if (paused || FindAnyObjectByType<UI_Manager>().gameEnded) return;
+
         RaycastHit hit;
         //the most beautiful calculation i have ever done that worked first try Camera.main.transform.position + Camera.main.transform.forward * 0.5f
         if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * 0.5f, Camera.main.transform.forward, out hit, range))

@@ -19,6 +19,7 @@ public class ItemSway : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0) return;
         float mouseX = Input.GetAxisRaw("Mouse X") * multiplier;
         float mouseY = Input.GetAxisRaw("Mouse Y") * multiplier;
 

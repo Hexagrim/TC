@@ -55,6 +55,11 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        if (FindAnyObjectByType<UI_Manager>().gameEnded)
+        {
+            agent.enabled = false;
+            return;
+        }
         float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
         switch (currentState)

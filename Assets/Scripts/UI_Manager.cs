@@ -20,6 +20,8 @@ public class UI_Manager : MonoBehaviour
 
     public bool gameEnded;
     public Animator endUI;
+
+    public Animator t_anim;
     void Start()
     {
         promptAnim = promptText.GetComponent<Animator>();
@@ -94,9 +96,16 @@ public class UI_Manager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("MainMenu");
     }
-
+    public void EndGame()
+    {
+        StartCoroutine(EndCredit());
+    }
     IEnumerator EndCredit()
     {
+        gameEnded = true;
+
+        t_anim.SetTrigger("fadeOut");
+        yield return new WaitForSeconds(1f);
         endUI.SetTrigger("end");
         yield return new WaitForSeconds(25);
         SceneManager.LoadSceneAsync("MainMenu");

@@ -46,7 +46,7 @@ public class IT_Valve : Interactable
         }
         else
         {
-            FindAnyObjectByType<UI_Manager>().ShowPrompt("A need a valve wheel..");
+            FindAnyObjectByType<UI_Manager>().ShowPrompt("I need a valve wheel..");
         }
     }
 

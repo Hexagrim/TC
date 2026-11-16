@@ -11,6 +11,7 @@ public class HeadBobController : MonoBehaviour
     private Vector3 startPos;
     public CharacterController controller;
 
+    
     void Start()
     {
         
@@ -19,6 +20,7 @@ public class HeadBobController : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f) return;
         CheckMotion();
     }
 
