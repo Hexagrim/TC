@@ -120,7 +120,14 @@ public class EnemyController : MonoBehaviour
         agent.isStopped = true;
         attacking = true;
         //probably not the way to go, but it works for now:
-        player.GetComponent<PickItem>().enabled = false;
+        PickItem pi = player.GetComponent<PickItem>();
+        if (pi.heldItem != null)
+        {
+            pi.heldItem.Drop();
+            pi.heldItem.transform.parent = null;
+            pi.heldItem = null;
+        }
+        pi.enabled = false;
         player.GetComponent<Interact>().enabled = false;
         player.enabled = false;
         Anim.SetBool("IsAttacking", true);
@@ -132,7 +139,7 @@ public class EnemyController : MonoBehaviour
         int nextIndex;
         // first time using do/while. turns out unity doesnt have a fking exclude from random range function
         //linq for the clutchh, takes closest n number of points
-        Transform[] closestPoints = patrolPoints.OrderBy(i => Vector3.Distance(patrolPoints[currentPatrolIndex].position, i.position)).Take(4).ToArray();
+        Transform[] closestPoints = patrolPoints.OrderBy(i => Vector3.Distance(patrolPoints[currentPatrolIndex].position, i.position)).Take(5).ToArray();
 
         do nextIndex = UnityEngine.Random.Range(0, closestPoints.Length);
         while (nextIndex == currentPatrolIndex);
