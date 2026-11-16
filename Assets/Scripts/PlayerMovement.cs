@@ -1,3 +1,4 @@
+using System;
 using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
@@ -23,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     bool canStand;
     public Transform cameraHolder;
+
+    public bool paused;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -33,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        if(paused) return;
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
@@ -139,5 +144,10 @@ public class PlayerMovement : MonoBehaviour
         {
             cameraHolder.transform.localPosition = new Vector3(0,1.5f,0);
         }
+    }
+
+    public void AdjustSens(float sensMult)
+    {
+        sens = sensMult * 1;
     }
 }

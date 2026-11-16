@@ -8,6 +8,8 @@ public class Interact : MonoBehaviour
 
     public GameObject lookingCrosshair;
     public LayerMask ignoreLayer;
+
+    public bool paused;
     void Start()
     {
         
@@ -16,7 +18,7 @@ public class Interact : MonoBehaviour
     void Update()
     {
         //same logic as the item thingy:
-
+        if (paused) return;
         RaycastHit hit;
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, range , ~ignoreLayer ))
