@@ -5,10 +5,12 @@ public class Item : MonoBehaviour
     public string itemName;
     int objectLayer;
 
+    bool canPlayDropSFX = false;
+    AudioManager AM;
     protected virtual void Start()
     {
         objectLayer = gameObject.layer;
-
+        AM = FindAnyObjectByType<AudioManager>();
     }
 
     protected virtual void Update()
@@ -38,7 +40,16 @@ public class Item : MonoBehaviour
             ForceMode.Impulse
         );
         Debug.Log("DONEEEEEEEE");
+        canPlayDropSFX = true;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (canPlayDropSFX)
+        {
+            canPlayDropSFX = false;
+            if (AM != null) AM.PlaySFX(AM.itemDrop);
+        }
+    }
 
 }

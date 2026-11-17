@@ -43,10 +43,12 @@ public class EnemyController : MonoBehaviour
 
     Coroutine closeDoorAfterPassing;
 
+    AudioManager AM;
     void Awake()
     {
         player = FindAnyObjectByType<PlayerMovement>();
         agent = GetComponent<NavMeshAgent>();
+        AM = FindAnyObjectByType<AudioManager>();
     }
 
     void Start()
@@ -56,6 +58,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+
         if (FindAnyObjectByType<UI_Manager>().gameEnded)
         {
             agent.enabled = false;
@@ -66,6 +69,7 @@ public class EnemyController : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.Patrolling:
+                AM.stopChase();
                 agent.speed = patrolSpeed;
                 Patrol();
                 if (distanceToPlayer <= detectionRange && CanSeePlayer())
@@ -73,9 +77,11 @@ public class EnemyController : MonoBehaviour
                     currentState = EnemyState.Following;
                 }
                 break;
+
             case EnemyState.Following:
 
                 FollowPlayer();
+                AM.playChase();
                 agent.speed = chaseSpeed;
 
                 if(distanceToPlayer <= attackRange)
@@ -98,16 +104,19 @@ public class EnemyController : MonoBehaviour
                 }
                 break;
             case EnemyState.Attacking:
-                if(!attacking) StartAttack();
+                
+                if (!attacking) StartAttack();
+
                 //Invoke(EndDay());
                 break;
+
         }
 
         UpdateAnimations();
         LookAtPlayerWhenChasing();
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 2.65f))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 4f))
         {
             if (hit.collider.GetComponent<IT_Door>())
             {
@@ -138,6 +147,7 @@ public class EnemyController : MonoBehaviour
         player.GetComponent<Interact>().enabled = false;
         player.enabled = false;
         Anim.SetBool("IsAttacking", true);
+        AM.PlayJumpscare();
         StartCoroutine(SendPlayerToMenu());
         
     }
@@ -212,7 +222,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator CloseDoor(IT_Door usedDoor)
     {
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(2f);
         usedDoor.CloseEnemy();
         closeDoorAfterPassing = null;
 

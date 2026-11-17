@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 
 public class IT_Door : Interactable
@@ -10,10 +11,13 @@ public class IT_Door : Interactable
     public bool open;
 
     Coroutine cooldown;
+
+    AudioManager AM;
     protected override void Start()
     {
         base.Start();
         player = FindAnyObjectByType<PlayerMovement>().transform;
+        AM = FindAnyObjectByType<AudioManager>();
     }
     public override void OnUse()
     {
@@ -26,6 +30,7 @@ public class IT_Door : Interactable
 
             if (dot > 0)
             {
+                
                 Anim.ResetTrigger("close");
                 Anim.SetTrigger("openF");
                 open = true;
@@ -44,6 +49,8 @@ public class IT_Door : Interactable
             Anim.SetTrigger("close");
             open = false;
         }
+
+        if(AM != null) AM.PlaySFX(AM.doorSound);
         cooldown = StartCoroutine(Cooldown());
     }
 
@@ -74,6 +81,7 @@ public class IT_Door : Interactable
                 open = true;
             }
 
+
         }
     }
     public void CloseEnemy()
@@ -81,5 +89,6 @@ public class IT_Door : Interactable
         Anim.SetTrigger("close");
         open = false;
         if(cooldown == null ) StartCoroutine(Cooldown());
+
     }
 }
