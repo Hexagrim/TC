@@ -66,6 +66,21 @@ public class EnemyController : MonoBehaviour
         }
         float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2.5f))
+        {
+            if (hit.collider.GetComponent<IT_Door>())
+            {
+                hit.collider.GetComponent<IT_Door>().OpenEnemy(transform);
+
+                if (closeDoorAfterPassing == null)
+                {
+                    closeDoorAfterPassing = StartCoroutine(CloseDoor(hit.collider.GetComponent<IT_Door>()));
+                }
+            }
+        }
+
+
         switch (currentState)
         {
             case EnemyState.Patrolling:
@@ -115,19 +130,7 @@ public class EnemyController : MonoBehaviour
         UpdateAnimations();
         LookAtPlayerWhenChasing();
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 4f))
-        {
-            if (hit.collider.GetComponent<IT_Door>())
-            {
-                hit.collider.GetComponent<IT_Door>().OpenEnemy(transform);
-
-                if (closeDoorAfterPassing == null)
-                {
-                    closeDoorAfterPassing = StartCoroutine(CloseDoor(hit.collider.GetComponent<IT_Door>()));
-                }
-            }
-        }
+        
 
     }
     
@@ -181,7 +184,7 @@ public class EnemyController : MonoBehaviour
     IEnumerator SendPlayerToMenu()
     {
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         FindAnyObjectByType<UI_Manager>().t_anim.SetTrigger("fadeOut");
         yield return new WaitForSeconds(1f);
         //send player to menu

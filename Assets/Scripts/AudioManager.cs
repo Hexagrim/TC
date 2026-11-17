@@ -7,16 +7,16 @@ public class AudioManager : MonoBehaviour
     public AudioSource JSFX;
     public AudioSource chaseMusic;
     public AudioSource backgroundMusic;
+    public AudioSource footStep;
 
     public AudioClip itemDrop;
-    public AudioClip footStep;
     public AudioClip doorSound;
     public AudioClip jumpScare;
     public bool playChaseMusic = false;
 
     void Start()
     {
-        StartCoroutine(FadeIn(10f,backgroundMusic,0.5f));
+        StartCoroutine(FadeIn(10f,backgroundMusic,0.4f));
     }
 
     // Update is called once per frame
@@ -76,10 +76,21 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(FadeIn(0.5f, chaseMusic, 1f));
         playChaseMusic = true;
     }
+
     public void stopChase()
     {
         if (!playChaseMusic) return;
         StartCoroutine(FadeOut(1f, chaseMusic));
         playChaseMusic = false;
     }
+
+    public void playStep(Transform stepPos, float vol)
+    {
+        AudioSource audioSource = Instantiate(footStep, stepPos);
+        audioSource.pitch = Random.Range(0.8f, 1.3f);
+        audioSource.volume = vol;
+        audioSource.Play();
+        Destroy(audioSource.gameObject, 1f);
+    }
+
 }

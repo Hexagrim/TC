@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
@@ -28,12 +29,19 @@ public class PlayerMovement : MonoBehaviour
 
     public bool paused;
     public Slider sensSlider;
+
+    AudioManager AM;
     void Start()
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        AM = FindAnyObjectByType<AudioManager>();
         realSpeed = speed;
+
+        //for SFXX
+
+        StartCoroutine(PlayerFootSteps());
     }
     
     void Update()
@@ -152,4 +160,30 @@ public class PlayerMovement : MonoBehaviour
     {
         sens = sensSlider.value + 0.1f;
     }
+    
+    IEnumerator PlayerFootSteps()
+    {
+        while (true)
+        {
+            if (crouching)
+            {
+                if (controller.velocity.magnitude > 0.05f && controller.isGrounded)
+                {
+                    AM.playStep(transform, 0.1f);
+                }
+                yield return new WaitForSeconds(0.45f);
+            }
+            else
+            {
+                if (controller.velocity.magnitude > 0.05f && controller.isGrounded)
+                {
+                    AM.playStep(transform, 0.2f);
+                }
+                yield return new WaitForSeconds(0.35f);
+            }
+        }
+       
+    }
+
+
 }
