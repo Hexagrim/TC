@@ -78298,16 +78298,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 6d33c4743139eda4fa4a86ed314ce2a0, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6d33c4743139eda4fa4a86ed314ce2a0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3f07690dec5d7a347a0292fb45be35d8, type: 2}
+      objectReference: {fileID: 2100000, guid: f05ef8e9e30f8d6459407849d66526cd, type: 2}
     - target: {fileID: 919132149155446097, guid: 6d33c4743139eda4fa4a86ed314ce2a0, type: 3}
       propertyPath: m_Name
       value: Furniture_Table_001
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6d33c4743139eda4fa4a86ed314ce2a0, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -138503,6 +138507,7 @@ MonoBehaviour:
   patrolSpeed: 2.25
   enemyHead: {fileID: 5901452235088233296}
   attackRange: 2.7
+  attacking: 0
 --- !u!1 &1522457330
 GameObject:
   m_ObjectHideFlags: 0

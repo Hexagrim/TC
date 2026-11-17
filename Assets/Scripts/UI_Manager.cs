@@ -22,11 +22,14 @@ public class UI_Manager : MonoBehaviour
     public Animator endUI;
 
     public Animator t_anim;
+
+    EnemyController enemyController;
     void Start()
     {
         promptAnim = promptText.GetComponent<Animator>();
         canPause = true;
         canShowPrompt = true;
+        enemyController = FindAnyObjectByType<EnemyController>();
     }
 
     void Update()
@@ -34,7 +37,7 @@ public class UI_Manager : MonoBehaviour
         //way to use prompts 
         //FindAnyObjectByType<UI_Manager>().ShowPrompt("I cant do that..");
 
-        if (Input.GetKeyDown(KeyCode.Escape) && canPause)
+        if (Input.GetKeyDown(KeyCode.Escape) && canPause && !enemyController.attacking)
         {
             StartCoroutine(PauseCooldown());
             paused = !paused;

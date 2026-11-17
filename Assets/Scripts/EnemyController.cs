@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
     int currentPatrolIndex;
     bool isWaiting;
     float timeSincePlayerLost;
-    bool attacking;
+    public bool attacking;
 
     EnemyState currentState = EnemyState.Patrolling;
 
@@ -107,7 +107,7 @@ public class EnemyController : MonoBehaviour
         LookAtPlayerWhenChasing();
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2.65f))
         {
             if (hit.collider.GetComponent<IT_Door>())
             {
@@ -148,7 +148,7 @@ public class EnemyController : MonoBehaviour
         int nextIndex;
         // first time using do/while. turns out unity doesnt have a fking exclude from random range function
         //linq for the clutchh, takes closest n number of points
-        Transform[] closestPoints = patrolPoints.OrderBy(i => Vector3.Distance(patrolPoints[currentPatrolIndex].position, i.position)).Take(7).ToArray();
+        Transform[] closestPoints = patrolPoints.OrderBy(i => Vector3.Distance(patrolPoints[currentPatrolIndex].position, i.position)).Take(6).ToArray();
         do nextIndex = UnityEngine.Random.Range(0, closestPoints.Length);
         while (nextIndex == currentPatrolIndex);
         currentPatrolIndex = Array.IndexOf(patrolPoints, closestPoints[nextIndex]);
@@ -212,7 +212,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator CloseDoor(IT_Door usedDoor)
     {
-        yield return new WaitForSeconds(1.65f);
+        yield return new WaitForSeconds(1.75f);
         usedDoor.CloseEnemy();
         closeDoorAfterPassing = null;
 
