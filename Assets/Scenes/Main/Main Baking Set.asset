@@ -166,25 +166,25 @@ MonoBehaviour:
   cellSharedDataAsset:
     m_AssetGUID: 45d0753df6367424382ba45a5a583f07
     m_StreamableAssetPath: APVStreamingAssets\e2ea7f0692e195e418ba8733046eea02\45d0753df6367424382ba45a5a583f07.bytes
-    m_ElementSize: 81920
+    m_ElementSize: 73728
     m_StreamableCellDescs:
       m_Keys: 0000000009000000030000000c000000010000000a000000040000000d000000
       m_Values:
       - offset: 0
         elementCount: 6
-      - offset: 491520
+      - offset: 442368
         elementCount: 1
-      - offset: 573440
+      - offset: 516096
         elementCount: 6
-      - offset: 1064960
+      - offset: 958464
         elementCount: 1
-      - offset: 1146880
+      - offset: 1032192
         elementCount: 3
-      - offset: 1392640
+      - offset: 1253376
         elementCount: 2
-      - offset: 1556480
+      - offset: 1400832
         elementCount: 6
-      - offset: 2048000
+      - offset: 1843200
         elementCount: 1
     m_Asset: {fileID: 4900000, guid: 45d0753df6367424382ba45a5a583f07, type: 3}
   scenarios:
@@ -322,7 +322,7 @@ MonoBehaviour:
   bakedMinDistanceBetweenProbes: 1
   bakedProbeOcclusion: 1
   bakedSkyOcclusionValue: 1
-  bakedSkyShadingDirectionValue: 1
+  bakedSkyShadingDirectionValue: 0
   bakedProbeOffset: {x: 0, y: 0, z: 0}
   bakedMaskCount: 1
   bakedLayerMasks:
@@ -337,8 +337,8 @@ MonoBehaviour:
   ProbeOcclusionChunkSize: 32768
   sharedValidityMaskChunkSize: 8192
   sharedSkyOcclusionL0L1ChunkSize: 65536
-  sharedSkyShadingDirectionIndicesChunkSize: 8192
-  sharedDataChunkSize: 81920
+  sharedSkyShadingDirectionIndicesChunkSize: 0
+  sharedDataChunkSize: 73728
   supportPositionChunkSize: 98304
   supportValidityChunkSize: 32768
   supportTouchupChunkSize: 32768
@@ -360,6 +360,6 @@ MonoBehaviour:
   skyOcclusionBakingBounces: 2
   skyOcclusionAverageAlbedo: 0.6
   skyOcclusionBackFaceCulling: 0
-  skyOcclusionShadingDirection: 1
+  skyOcclusionShadingDirection: 0
   useRenderingLayers: 0
   renderingLayerMasks: []
