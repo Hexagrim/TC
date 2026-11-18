@@ -1,7 +1,5 @@
 
-using JetBrains.Annotations;
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class IT_MainDoor : Interactable

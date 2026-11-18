@@ -1,11 +1,8 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Linq;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 public enum EnemyState
 {
