@@ -34,6 +34,19 @@ The player gets **1 life** to find, explore and solve all the puzzles to escape 
 - The game uses probe volumes which support baked GI and its so cool cause it even works with moving objects
 - The monster is a cool ting, first time i made smthing like this
 
+## Problems i had?? *(turns out i need to elaborate this too)*
+
+- Enemy movement was too choppy but it was fixed with some map building
+- DRAWERS. Turns out making drawers to hold physics based items is ALMOST IMPOSSSIBLE but i fixed it by making the item move along if it triggers a container collider
+- Doors. ENEMY JUST CLIPS THROUGH IT. I fixed it by just adding enemy ray check and calling a function on the door to open and to close after a time
+- LIGHTING looked ass every time. Was fixed when i finally used APV to make probe lighting and with some GI it looks gooooood
+
+## BUILD:
+- just download and plug it into a unity 6 editor and just build it or modify however you want
+
+## Installation:
+Download from [itch page](https://hexagrim.itch.io/tc) and extract the zip file. Then place it in any desired directory and just use the EXE file. (THERE WILL BE A SAFESCREEN MENU about "might be harmful", you can ignore this. If you're concerned feel free to run a virus check on the zip.)
+
 -Note
 
 *The game doesn't include output of any GEN-AI*
