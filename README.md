@@ -26,7 +26,7 @@ The player gets **1 life** to find, explore and solve all the puzzles to escape 
 -Assets from SketchFab and Itch
 -Animations from Mixamo
 
-### This was my first proper 3d game, so bugs are expected. There is a problem with web building being that the APV(Adaptive probe volumes) are not supported whole the entire main scene depends on it. So lighing is bugged for web build.
+** This was my first proper 3d game, so bugs are expected. There is a problem with web building being that the APV(Adaptive probe volumes) are not supported while the entire main scene depends on it. So lighing is bugged for web build.**
 
 ## Cool things i like about this game:
 
