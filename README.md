@@ -1,4 +1,4 @@
-# The Cabin
+# The Cabin (TC)
 
 ---
 
@@ -24,8 +24,15 @@ The player gets **1 life** to find, explore and solve all the puzzles to escape 
 -Blender
 -Photoshop 2026
 -Assets from SketchFab and Itch
+-Animations from Mixamo
 
 ### This was my first proper 3d game, so bugs are expected. There is a problem with web building being that the APV(Adaptive probe volumes) are not supported whole the entire main scene depends on it. So lighing is bugged for web build.
+
+## Cool things i like about this game:
+
+- I used a class derived way of handling the item classes and the interactable classes which is pretty cool
+- The game uses probe volumes which support baked GI and its so cool cause it even works with moving objects
+- The monster is a cool ting, first time i made smthing like this
 
 -Note
 
